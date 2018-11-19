@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "tech.claudioed.store.infra.proto";
+option java_outer_classname = "Store";
+option objc_class_prefix = "store";
+
+package store;
+
+service Payment {
+  rpc pay (PaymentRequest) returns (PaymentResult) {
+  }
+}
+
+message PaymentRequest {
+  Card card = 1;
+  Order order = 2;
+  Customer customer = 3;
+  float amount = 4;
+}
+
+message PaymentResult {
+  string status = 1;
+  string processedAt = 2;
+}
+
+message Card {
+  string number = 1;
+  string expireAt = 2;
+}
+
+message Order {
+  string number = 1;
+  float total = 2;
+}
+
+message Customer {
+  string id = 1;
+  string document = 2;
+  string name = 3;
+}
